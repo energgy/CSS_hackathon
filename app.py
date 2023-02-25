@@ -1,4 +1,3 @@
-import azure
 import os
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
@@ -12,8 +11,13 @@ text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=creden
 input_text = "I feel so sad and hopeless today."
 sentiment_analysis = text_analytics_client.analyze_sentiment([input_text])[0]
 
-# Print sentiment score and label
-print("Sentiment score: {}".format(sentiment_analysis.sentiment_scores))
-print("Sentiment label: {}".format(sentiment_analysis.sentiment))
+# Check for errors
+if not sentiment_analysis.is_error:
+    # Print sentiment score and label
+    print("Sentiment score: {}".format(sentiment_analysis.confidence_scores))
+    print("Sentiment label: {}".format(sentiment_analysis.sentiment))
+else:
+    print("Error: {}".format(sentiment_analysis.id))
+
 
 
