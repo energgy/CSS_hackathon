@@ -18,6 +18,3 @@ if not sentiment_analysis.is_error:
     print("Sentiment label: {}".format(sentiment_analysis.sentiment))
 else:
     print("Error: {}".format(sentiment_analysis.id))
-
-
-
